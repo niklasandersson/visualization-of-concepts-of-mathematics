@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 project(placeholder)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${project_SOURCE_DIR}/cmake")
 
 set(CMAKE_CXX_STANDARD 11)
 

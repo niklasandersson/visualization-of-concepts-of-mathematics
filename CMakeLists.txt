@@ -8,22 +8,24 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-find_package(Doxygen)
+if (CMAKE_BUILD_TYPE MATCHES "^[Rr]elease")
+  find_package(Doxygen)
 
-if (DOXYGEN_FOUND)
+  if (DOXYGEN_FOUND)
     set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile.in)
     set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
 
     configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
 
     add_custom_target( doc_doxygen ALL
-        COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        COMMENT "Generating API documentation with Doxygen"
-        VERBATIM )
-else (DOXYGEN_FOUND)
-  message("Install Doxygen to generate documentation.")
-endif (DOXYGEN_FOUND)
+      COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+      WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+      COMMENT "Generating API documentation with Doxygen"
+      VERBATIM )
+  else (DOXYGEN_FOUND)
+    message("Install Doxygen to generate documentation.")
+  endif (DOXYGEN_FOUND)
 
-add_subdirectory(project)
-add_subdirectory(test)
+  add_subdirectory(project)
+  add_subdirectory(test)
+endif()

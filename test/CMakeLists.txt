@@ -6,6 +6,9 @@ set(TEST_SOURCES
     test_utils.cpp
    )
 
-include_directories("../project/src/include/")
+find_package(SDL2 REQUIRED)
+include_directories("../project/src/include/"
+                    ${SDL2_INCLUDE_DIR})
+
 add_executable(tests ${TEST_SOURCES})
-target_link_libraries(tests Catch SomeFunctions Utils)
+target_link_libraries(tests Catch SDL2 SomeFunctions Utils)

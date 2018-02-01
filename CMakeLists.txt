@@ -25,7 +25,7 @@ if (CMAKE_BUILD_TYPE MATCHES "^[Rr]elease")
   else (DOXYGEN_FOUND)
     message("Install Doxygen to generate documentation.")
   endif (DOXYGEN_FOUND)
-
-  add_subdirectory(project)
-  add_subdirectory(test)
 endif()
+
+add_subdirectory(project)
+add_subdirectory(test)

@@ -15,6 +15,15 @@ std::string GetResourcePath(const std::string &subdirectory) {
                 << SDL_GetError() << std::endl;
 
     }
+
+    #ifdef _WIN32
+      const std::string SEPERATOR = "\\";
+    #else
+      const std::string SEPERATOR = "/";
+    #endif
+    std::size_t pos = path_store.rfind("bin");
+    path_store = path_store.substr(0, pos) + "resources" + SEPERATOR;
+
   }
 
   return path_store;

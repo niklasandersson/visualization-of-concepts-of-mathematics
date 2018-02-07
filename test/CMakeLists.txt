@@ -11,4 +11,4 @@ include_directories("../project/src/include/"
                     ${SDL2_INCLUDE_DIR})
 
 add_executable(tests ${TEST_SOURCES})
-target_link_libraries(tests Catch SDL2 SomeFunctions Utils)
+target_link_libraries(tests Catch SomeFunctions Utils SDL2)

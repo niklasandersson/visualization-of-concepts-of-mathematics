@@ -6,12 +6,14 @@
 
 SCENARIO("GetResourcePath can return the correct path", "[sdl_utils]") {
   GIVEN("correct input") {
-    WHEN("no argument is given") {
-      std::string out = GetResourcePath();
-      THEN("the resourcepath is returned") {
-        REQUIRE(strcmp(SDL_GetBasePath(), out.c_str()) == 0);
+
+    WHEN("a subdirectory is given") {
+      std::string input = "test";
+      std::string out = GetResourcePath(input);
+      THEN("the path should end with the given subdirectory") {
+        std::size_t pos = out.rfind("test");
+        REQUIRE(out.size() - pos == input.size() + 1);
       }
     }
   }
-
 }
